@@ -1,0 +1,19 @@
+# .htaccess DANS le dossier public/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si votre site est directement à la racine du domaine (ex: monsite.com)
+    RewriteBase /
+
+    # Si votre site est dans un sous-dossier (ex: monsite.com/mon_app/)
+    # Remplacez / par le nom de votre sous-dossier, par exemple :
+    # RewriteBase /mon_app/
+
+
+    # Si la requête n'est PAS un fichier existant (-f) ET n'est PAS un répertoire existant (-d)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Alors, redirige la requête vers index.php en conservant la chaîne de requête
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
